@@ -1,2 +1,6 @@
-.idea
-/venv
+venv/
+.idea/
+.env
+__pycache__/
+.vscode/*
+.vscode
