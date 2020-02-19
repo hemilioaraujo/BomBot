@@ -9,8 +9,9 @@ key = config('TOKEN')
 bot = telebot.TeleBot(key)
 
 
-@bot.message_handler(commands=["oi"])
+@bot.message_handler(commands=["oi", "Oi", "oI", "OI"])
 def oi(message):
+    print(message)
     bot.reply_to(message, f"Oi {message.from_user.username}")
 
 
