@@ -15,6 +15,11 @@ def oi(message):
     bot.reply_to(message, f"Oi {message.from_user.username}")
 
 
+@bot.message_handler(content_types="location")
+def local(message):
+    bot.reply_to(message, message.location)
+
+
 @bot.message_handler(regexp="^/dado")
 def dado(message):
     """[Retorna o valor de um dado de N faces N vezes]
