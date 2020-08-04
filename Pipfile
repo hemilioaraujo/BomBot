@@ -8,14 +8,14 @@ flake8 = "*"
 pytest = "*"
 
 [packages]
-certifi = "==2019.11.28"
-chardet = "==3.0.4"
-idna = "==2.8"
-python-decouple = "==3.3"
-requests = "==2.22.0"
-six = "==1.14.0"
-urllib3 = "==1.25.8"
-pyTelegramBotAPI = "==3.6.7"
+certifi = "*"
+chardet = "*"
+idna = "*"
+python-decouple = "*"
+requests = "*"
+six = "*"
+urllib3 = "*"
+pyTelegramBotAPI = "*"
 
 [requires]
 python_version = "3.8"
