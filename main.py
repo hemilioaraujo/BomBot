@@ -55,4 +55,4 @@ def dado(message):
         return
 
 
-bot.polling()
+bot.polling(interval=10)
