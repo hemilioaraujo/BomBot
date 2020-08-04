@@ -23,10 +23,10 @@ def local(message):
 @bot.message_handler(regexp="^/dado")
 def dado(message):
     """[Retorna o valor de um dado de N faces N vezes]
-    
+
     Arguments:
         message {[dict]} -- [conteúdo da mensagem recebida]
-    """    
+    """
 
     # numeros[0] faces, numeros[1] repetições
     numeros = re.findall("[0-9]+", message.text)
