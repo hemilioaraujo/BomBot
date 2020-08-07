@@ -4,9 +4,9 @@ import re
 import random
 import time
 
-key = config('TOKEN')
+TOKEN = config('TOKEN')
 
-bot = telebot.TeleBot(key)
+bot = telebot.TeleBot(TOKEN)
 
 
 @bot.message_handler(commands=["oi", "Oi", "oI", "OI"])
@@ -23,7 +23,6 @@ def local(message):
 """
     )
     bot.send_message(message.chat.id, texto, parse_mode='HTML')
-    # bot.reply_to(message, message.location)
 
 
 @bot.message_handler(regexp="^/dado")
