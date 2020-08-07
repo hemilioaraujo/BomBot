@@ -49,8 +49,18 @@ def dado(message):
 
             bot.reply_to(message, resultado)
     except IndexError:
-        bot.reply_to(message, 'Por favor informe /dado {nº faces} {repetições}\n'
-                              'Ex.: /dado 6 3')
+        texto = (
+"""
+<b>Instruções comando /dado</b>
+<b>Sintaxe:</b> /dado <b>X</b> <b>Y</b>
+<b>Onde:</b>
+    <b>X: </b> Número de faces.
+    <b>Y: </b> Número de lances.
+<b>Exemplo:</b>
+    /dado 6 10
+"""
+        )
+        bot.send_message(message.chat.id, texto, parse_mode='HTML')
     finally:
         return
 
