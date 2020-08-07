@@ -3,7 +3,6 @@ from decouple import config
 import re
 import random
 
-
 key = config('TOKEN')
 
 bot = telebot.TeleBot(key)
@@ -16,7 +15,14 @@ def oi(message):
 
 @bot.message_handler(content_types="location")
 def local(message):
-    bot.reply_to(message, message.location)
+    texto = (
+        f"""
+<b>Longitude: </b> {message.location.longitude}
+<b>Latitude: </b> {message.location.latitude}
+"""
+    )
+    bot.send_message(message.chat.id, texto, parse_mode='HTML')
+    # bot.reply_to(message, message.location)
 
 
 @bot.message_handler(regexp="^/dado")
@@ -50,7 +56,7 @@ def dado(message):
             bot.reply_to(message, resultado)
     except IndexError:
         texto = (
-"""
+            """
 <b>Instruções comando /dado</b>
 <b>Sintaxe:</b> /dado <b>X</b> <b>Y</b>
 <b>Onde:</b>
