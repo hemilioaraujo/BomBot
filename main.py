@@ -2,6 +2,7 @@ import telebot
 from decouple import config
 import re
 import random
+import time
 
 key = config('TOKEN')
 
@@ -71,4 +72,8 @@ def dado(message):
         return
 
 
-bot.polling(interval=2)
+while True:
+    try:
+        bot.polling(interval=2)
+    except Exception:
+        time.sleep(2)
