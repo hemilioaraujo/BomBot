@@ -3,9 +3,9 @@ from decouple import config
 import re
 import random
 import time
+from pyrastreio import correios
 
 TOKEN = config('TOKEN')
-
 bot = telebot.TeleBot(TOKEN)
 
 
@@ -69,6 +69,42 @@ def dado(message):
         bot.send_message(message.chat.id, texto, parse_mode='HTML')
     finally:
         return
+
+
+@bot.message_handler(regexp="^/rastrear")
+def rastrear(message):
+    codigo = str(message.text).upper().split(' ')[-1]
+
+    if verificar_codigo(codigo):
+        dados = correios(codigo)
+        texto = ''
+        if len(dados):
+            for i in dados:
+                texto += f"{i['data']} - {i['hora']}\n"
+                texto += f"{i['local']}\n"
+                texto += f"<b>{i['mensagem']}</b>\n"
+                texto += "============================\n\n"
+            # bot.reply_to(message, texto)
+            bot.send_message(message.chat.id, texto, parse_mode='HTML')
+        else:
+            bot.reply_to(message, "Objeto não encontrado!")
+    else:
+        bot.reply_to(message, "Código incorreto!")
+
+
+def verificar_codigo(codigo):
+    """[Método que verifica o formato do código]
+    Arguments:
+        codigo {[str]} -- [código de rastreamento]
+    Returns:
+        object {[boolean]}: [True se atende o requisito]
+    """
+    codigo = codigo.upper()
+    # if re.search("[A-Z]{2}+[0-9]{9}+[A-Z]{2}", codigo):
+    # TEM QUE MELHORAR ESTA EXPRESSÃO HEIN
+    if re.search("[A-Z]+[A-Z]+[0-9]+[0-9]+[0-9]+[0-9]+[0-9]+[0-9]+[0-9]+[0-9]+[0-9]+[A-Z]+[A-Z]", codigo):
+        return True
+    return False
 
 
 while True:
