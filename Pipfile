@@ -16,7 +16,7 @@ requests = "*"
 six = "*"
 urllib3 = "*"
 pyTelegramBotAPI = "*"
-selenium = "*"
+pyrastreio = "*"
 
 [requires]
 python_version = "3.8"
