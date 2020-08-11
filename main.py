@@ -89,7 +89,14 @@ def rastrear(message):
         else:
             bot.reply_to(message, "Objeto não encontrado!")
     else:
-        bot.reply_to(message, "Código incorreto!")
+        texto = """
+<b>Instruções comando /rastrear</b>
+<b>Sintaxe:</b> 
+    /rastrear <b>código</b>
+<b>Exemplo:</b>
+    /rastrear AA111111111BB
+        """
+        bot.send_message(message.chat.id, texto, parse_mode='HTML')
 
 
 def verificar_codigo(codigo):
